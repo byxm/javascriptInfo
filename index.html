@@ -1,0 +1,59 @@
+<!--
+ * @Description: 
+ * @Author: 
+ * @Date: 2020-06-30 14:56:42
+--> 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #divContainer {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+  </head>
+  <body>
+    <img src="http://cdn.glitch.com/bff21d2a-d55f-4bde-b7d9-61b1e987b968%2Fcat-box.gif?1515525975431" alt="" />
+    <span
+      >this is test text this is test textthis is test textthis is test textthis
+      is test textthis is test textthis is test textthis is test textthis is
+      test textthis is test textthis is test textthis is test textthis is test
+      textthis is test textthis is test textthis is test textthis is test
+      textthis is test text</span
+    >
+    <div id='divContainer' style="background: linear-gradient(45deg, red, green);"></div>
+    <button id="whileTrue">while true</button>
+    <button id="testTimeOut">setTimeout</button>
+    <script>
+      function testInfiniteLoop() {
+        while (true);
+      }
+      function testTimeout() {
+        setTimeout(testTimeOut);
+      }
+      whileTrue.onclick = () => {
+        testInfiniteLoop();
+      };
+      testTimeOut.onclick = () => {
+        testTimeOut();
+      };
+      //   const btn = document.getElementById("btn");
+      //   btn.addEventListener("click", () => {
+      //     Promise.resolve().then(() => {
+      //         console.log('MicroTask1');
+      //     });
+      //     console.log('Task 1');
+      //   });
+      //   btn.addEventListener("click", () => {
+      //     Promise.resolve().then(() => {
+      //         console.log('MicroTask2');
+      //     });
+      //     console.log('Task 2');
+      //   });
+    </script>
+  </body>
+</html>
