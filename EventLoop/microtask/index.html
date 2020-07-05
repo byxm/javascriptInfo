@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="taskQueue">任务队列</button>
+    <script>
+        /**
+         * 第一种调用方式，通过用户点击 
+         * 
+        */
+        taskQueue.addEventListener('click', () => {
+            Promise.resolve().then(() => {
+                console.log('Microtask1');
+            })
+            console.log('log1')
+        })
+        taskQueue.addEventListener('click', () => {
+            Promise.resolve().then(() => {
+                console.log('MicroTask2');
+            })
+            console.log('log2');
+        })
+    </script>
+</body>
+</html>

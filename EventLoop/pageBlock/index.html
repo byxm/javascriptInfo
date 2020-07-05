@@ -11,8 +11,14 @@
     <title>Document</title>
     <style>
         #divContainer {
-            width: 300px;
-            height: 300px;
+          width: 300px;
+          height: 300px;
+          background-color: red;
+        }
+        #divContainer2 {
+          width: 300px;
+          height: 300px;
+          background-color: yellow;
         }
     </style>
   </head>
@@ -25,10 +31,13 @@
       textthis is test textthis is test textthis is test textthis is test
       textthis is test text</span
     >
-    <div id='divContainer' style="background: linear-gradient(45deg, red, green);"></div>
+    <div id='divContainer'></div>
     <button id="whileTrue">while true</button>
     <button id="testTimeOut">setTimeout</button>
+    <div id="divContainer2"></div>
     <script>
+      let marginGap = 0;
+      let marginGap2 = 0;
       function testInfiniteLoop() {
         while (true);
       }
@@ -41,6 +50,30 @@
       testTimeOut.onclick = () => {
         testTimeOut();
       };
+
+      function animateBasic(domNode) {
+        domNode.style.marginLeft = `${++marginGap}px` 
+      }
+
+      function animateTimeout() {
+        // const dom = document.getElementById('divContainer');
+        // animateBasic(dom);
+        divContainer.style.marginLeft = `${++marginGap}px`
+        setTimeout(animateTimeout, 0)
+      }
+      function animateReq() {
+        // const dom = document.getElementById('divContainer2')
+        // animateBasic(dom);
+        divContainer2.style.marginLeft = `${++marginGap2}px`; 
+        requestAnimationFrame(animateReq);
+      }
+
+      animateTimeout();
+      // animateReq();
+      // setInterval(animateTimeout, 10)
+
+
+
       //   const btn = document.getElementById("btn");
       //   btn.addEventListener("click", () => {
       //     Promise.resolve().then(() => {
