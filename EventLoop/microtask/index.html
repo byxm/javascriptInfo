@@ -10,16 +10,24 @@
     <button id="taskQueue">任务队列</button>
     <script>
         /**
-         * 第一种调用方式，通过用户点击 
+         * 第一种调用方式，通过用户点击，每个监听函数即是一个单独调用栈。脚本执行->微任务队列->宏任务队列 
+         * 要记住微任务会在当前调用栈清空后立即执行，一旦调用栈清空就会立刻去执行微任务队列
          * 
         */
+       const abc = 'adsfsfdsf';
         taskQueue.addEventListener('click', () => {
+            setTimeout(() => {
+                console.log('timeout1');
+            });
             Promise.resolve().then(() => {
                 console.log('Microtask1');
             })
             console.log('log1')
         })
         taskQueue.addEventListener('click', () => {
+            setTimeout(() => {
+                console.log('timeout2')
+            });
             Promise.resolve().then(() => {
                 console.log('MicroTask2');
             })

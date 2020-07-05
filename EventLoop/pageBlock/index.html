@@ -56,20 +56,26 @@
       }
 
       function animateTimeout() {
-        // const dom = document.getElementById('divContainer');
-        // animateBasic(dom);
         divContainer.style.marginLeft = `${++marginGap}px`
         setTimeout(animateTimeout, 0)
       }
       function animateReq() {
-        // const dom = document.getElementById('divContainer2')
-        // animateBasic(dom);
         divContainer2.style.marginLeft = `${++marginGap2}px`; 
         requestAnimationFrame(animateReq);
       }
 
+      /**
+       * 这里会看到setTimeout创建的动画速度是RSF的将近三倍，原因是普通显示器的刷新频率大概是每秒60HZ，浏览器为了让页面看起来更流畅
+       * 会去适配显示器的刷新频率，决定在什么时候渲染能够达到最优效果。所以在现在的这个例子中，animateTimeout的动画渲染是每秒1000次
+       * 这就远远超过显示器的60hz，浏览器在渲染的时候就会将它同步到和显示器相同的频率。按照一秒60HZ来计算，刷新一帧的时间大概是1000ms / 60,约等于
+       * 16.7ms。也就是说1s内如果有60次刷新任务的话，每一帧就执行一次任务。但是现在animateTimeout每秒有1000次刷新任务，同步到每一帧大概会多执行3次
+       * 所以animateTimeout的播放速度就会看起来快3倍。所以当把setTimeout的时间设置成1000 / 60和刷新频率一致看起来就一样了。
+      */
       animateTimeout();
-      // animateReq();
+      /**
+       * setTimeout发生在事件环，而requestAnimatinoFrame发生在渲染环
+      */
+      animateReq();
       // setInterval(animateTimeout, 10)
 
 
