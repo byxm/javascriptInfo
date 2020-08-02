@@ -36,6 +36,12 @@
     <button id="testTimeOut">setTimeout</button>
     <div id="divContainer2"></div>
     <script>
+
+      function delay(time) {
+        const delayMs = time * 1000;
+        const startTime = Date.now();
+        while(Date.now() - startTime < delayMs);
+      }
       let marginGap = 0;
       let marginGap2 = 0;
       function testInfiniteLoop() {

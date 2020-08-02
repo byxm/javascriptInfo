@@ -26,20 +26,28 @@
     <div id="divContainer">timeoutDiv</div>
     <div id="divContainer2">animateDiv</div>
     <script>
+       function delay(time) {
+        const delayMs = time * 1000;
+        const startTime = Date.now();
+        while(Date.now() - startTime < delayMs);
+      }
       let marginGap = 0;
       let marginGap2 = 0;
 
       function animateTimeout() {
+        delay(1);
         divContainer.style.marginLeft = `${++marginGap}px`;
         setTimeout(animateTimeout, 1000 / 60);
       }
+      
       function animateReq(req) {
+
         divContainer2.style.marginLeft = `${++marginGap2}px`;
         requestAnimationFrame(animateReq);
       }
 
       animateTimeout();
-      animateReq();
+      // animateReq();
     </script>
   </body>
 </html>

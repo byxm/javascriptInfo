@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bluebird": "^3.7.2",
+    "nodemon": "^2.0.4",
     "promise": "^8.1.0"
   }
 }
