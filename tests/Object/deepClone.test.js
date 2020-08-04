@@ -1,19 +1,15 @@
 const { assert } = require("chai");
-const { testObjectAssign } = require("../../Object/clone/deepClone");
+const { deepCloneObject } = require("../../Object/clone/deepClone");
 
 describe("compareObject", () => {
   it("should return true when pass the same objects arguments", () => {
-    assert.equal(
-      testObjectAssign({ name: "simone" }, { name: "simone" }),
-      false
-    );
-    assert.equal(
-      testObjectAssign({ name: "simone" }, { name: "simone" }),
-      true
-    );
-    assert.equal(
-      testObjectAssign({ name: "simone" }, { name: "simone" }),
-      true
-    );
+    const testObj = { name: "simone" };
+    const testDeepObj = {
+      name: "simone",
+      nested: { sex: "男", hobby: "篮球" },
+    };
+    assert.notEqual(deepCloneObject(testObj), testObj);
+    assert.notEqual(deepCloneObject(testDeepObj), testDeepObj);
+    assert.notEqual(deepCloneObject(testDeepObj).nested, testDeepObj.nested);
   });
 });
