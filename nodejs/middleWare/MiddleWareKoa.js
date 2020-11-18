@@ -24,13 +24,33 @@ function delay (ms) {
       setTimeout(resolve, ms)
     })
   }
-//   app.use(async (ctx, next) => {
-//     ctx.status = 200
-//     console.log('Setting status')
-//     return next() // forgot await!
-//   })
-//   // We don't call `next()` because
-// // we don't want anything else to happen.
+  // 中间件级联执行的实现主要是依赖async, await 关键字的实现
+  // https://juejin.im/post/6844903892623294477
+  app.use(async (ctx, next) => {
+    ctx.status = 200
+    console.log('Setting status')
+    next()
+    // console.log(next())
+    // await next();
+    console.log('forget next')
+  })
+  // We don't call `next()` because
+// we don't want anything else to happen.
+app.use(async (ctx, next) => {
+  ctx.status = 200
+  console.log('print simone')
+  await next()
+  // await next()
+  console.log('record simone')
+})
+
+app.use(async (ctx, next) => {
+  ctx.status = 200
+  console.log('print finished')
+  await next()
+  console.log('record finished')
+})
+
 // app.use((ctx) => {
 //   return delay(1000).then(() => {
 //     console.log('Setting body')
@@ -55,31 +75,31 @@ function delay (ms) {
 //   await next()
 // })
 // app.use(async (ctx) => {
-//   // await delay(1000)
+//   await delay(1000)
 //   console.log('Setting body')
 //   ctx.body = 'Hello from Koa'
 // })
 
 
 
-app.use(async (ctx, next) => {
-  try {
-    await next()
-  } catch (err) {
-    ctx.status = 400
-    ctx.body = `Uh-oh: ${err.message}`
-    console.log('Error handler:', err.message)
-  }
-})
-app.use(async (ctx) => {
-  if (ctx.query.greet !== 'world') {
-    throw new Error('can only greet "world"')
-  }
+// app.use(async (ctx, next) => {
+//   try {
+//     await next()
+//   } catch (err) {
+//     ctx.status = 400
+//     ctx.body = `Uh-oh: ${err.message}`
+//     console.log('Error handler:', err.message)
+//   }
+// })
+// app.use(async (ctx) => {
+//   if (ctx.query.greet !== 'world') {
+//     throw new Error('can only greet "world"')
+//   }
   
-  console.log('Sending response')
-  ctx.status = 200
-  ctx.body = `Hello ${ctx.query.greet} from Koa`
-})
+//   console.log('Sending response')
+//   ctx.status = 200
+//   ctx.body = `Hello ${ctx.query.greet} from Koa`
+// })
 
 
 
