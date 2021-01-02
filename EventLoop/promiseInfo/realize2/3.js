@@ -36,9 +36,11 @@ class myPromise {
 }
 
 const _promise = new myPromise((resolve) => {
-  setTimeout(() => {
-    resolve('2s的异步操作')
-  }, 2000)
+  console.log('promise1')
+  resolve('promiseOne')
+  // setTimeout(() => {
+  //   resolve('2s的异步操作')
+  // }, 2000)
 })
 
 
@@ -48,3 +50,5 @@ _promise.then((res) => {
 }).then((res) => {
   console.log('res2', res)
 })
+
+console.log('end')

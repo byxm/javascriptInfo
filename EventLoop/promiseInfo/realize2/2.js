@@ -41,6 +41,8 @@ promise.then(res => {
     console.log('res12', res)
 })
 
+console.log('end')
+
 
 /**
  * 这里虽然解决了同步的问题，但是不能实现Promise规范的then链可以将执行返回的结果传递给下一个then函数

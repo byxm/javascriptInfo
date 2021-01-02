@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BFC父子元素maring重叠问题</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background: #ccc;
+      }
+      .wrap {
+        background: yellow;
+        overflow: hidden; /* 在父元素中创建一个BFC */
+      }
+      .wrap h1 {
+        background: pink;
+        margin: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">box</div>
+    <div class="wrap">
+      <h1>h1</h1>
+    </div>
+  </body>
+</html>

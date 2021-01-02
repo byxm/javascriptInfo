@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BFC</title>
+    <style>
+      p {
+        color: #fff;
+        background: #888;
+        width: 200px;
+        line-height: 100px;
+        text-align: center;
+        margin: 100px;
+      }
+      .wrap {
+          overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <p>ABC</p>         <!-- 同属于一个BFC的相邻元素之间的内边距会发生重叠 -->
+    <div class="wrap"> <!--在两个元素中创建一个BFC隔开就能消除BFC带来的影响 -->
+    <p>ABC</p>
+  </body>
+</html>

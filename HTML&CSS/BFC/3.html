@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BFC不会重叠浮动元素</title>
+    <style>
+      .box1 {
+        height: 100px;
+        width: 100px;
+        float: left;
+        background: lightblue;
+      }
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background: #eee;
+        overflow: hidden; /* 我们可以把box2创建一个BFC以消除浮动元素box1带来的影响 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box1">我是一个左浮动的元素</div>
+    <div class="box2">
+      喂喂喂!大家不要生气嘛，生气会犯嗔戒的。悟空你也太调皮了，
+      我跟你说过叫你不要乱扔东西，你怎么又……你看，我还没说完你就把棍子给扔掉了!
+      月光宝盒是宝物，你把它扔掉会污染环境，要是砸到小朋友怎么办，就算砸不到小朋友，
+      砸到花花草草也是不对的。
+    </div>
+  </body>
+</html>
