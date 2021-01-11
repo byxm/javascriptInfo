@@ -19,37 +19,37 @@ const app = new Koa()
 
 
 // Simple Promise delay
-function delay (ms) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms)
-    })
-  }
-  // 中间件级联执行的实现主要是依赖async, await 关键字的实现
-  // https://juejin.im/post/6844903892623294477
-  app.use(async (ctx, next) => {
-    ctx.status = 200
-    console.log('Setting status')
-    next()
-    // console.log(next())
-    // await next();
-    console.log('forget next')
-  })
-  // We don't call `next()` because
-// we don't want anything else to happen.
-app.use(async (ctx, next) => {
-  ctx.status = 200
-  console.log('print simone')
-  await next()
-  // await next()
-  console.log('record simone')
-})
+// function delay (ms) {
+//     return new Promise((resolve) => {
+//       setTimeout(resolve, ms)
+//     })
+//   }
+//   // 中间件级联执行的实现主要是依赖async, await 关键字的实现
+//   // https://juejin.im/post/6844903892623294477
+//   app.use(async (ctx, next) => {
+//     ctx.status = 200
+//     console.log('Setting status')
+//     next()
+//     // console.log(next())
+//     // await next();
+//     console.log('forget next')
+//   })
+//   // We don't call `next()` because
+// // we don't want anything else to happen.
+// app.use(async (ctx, next) => {
+//   ctx.status = 200
+//   console.log('print simone')
+//   await next()
+//   // await next()
+//   console.log('record simone')
+// })
 
-app.use(async (ctx, next) => {
-  ctx.status = 200
-  console.log('print finished')
-  await next()
-  console.log('record finished')
-})
+// app.use(async (ctx, next) => {
+//   ctx.status = 200
+//   console.log('print finished')
+//   await next()
+//   console.log('record finished')
+// })
 
 // app.use((ctx) => {
 //   return delay(1000).then(() => {
@@ -100,6 +100,25 @@ app.use(async (ctx, next) => {
 //   ctx.status = 200
 //   ctx.body = `Hello ${ctx.query.greet} from Koa`
 // })
+
+
+app.use(async (ctx, next) => {
+  console.log(1)
+  next(); 
+  console.log(2)
+})
+
+app.use(async (ctx, next) => {
+  console.log(3)
+  next(); 
+  console.log(4)
+})
+
+app.use(async (ctx, next) => {
+  console.log(5)
+  next(); 
+  console.log(6)
+})
 
 
 
