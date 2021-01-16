@@ -18,7 +18,9 @@
     "mocha": "^8.1.0",
     "nodemon": "^2.0.4",
     "promise": "^8.1.0",
+    "redux": "^4.0.5",
     "request": "^2.88.2",
-    "superagent": "^6.1.0"
+    "superagent": "^6.1.0",
+    "thunkify": "^2.1.2"
   }
 }

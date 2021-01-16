@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>块级元素的水平居中</title>
+  </head>
+  <style>
+    .child {
+      width: 100px;
+      margin: 0 auto; /* 该属性要保证有宽度 */
+    }
+
+    .box1 {
+      position: relative;
+    }
+
+    .child1 {
+      position: absolute;
+      width: 200px;
+      height: 30px;
+      background-color: red;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .box2 {
+      display: flex;
+      justify-content: center;
+    }
+
+    .box3 {
+        display: flex;
+    }
+
+    .child3 {
+        margin: 0 auto;
+    }
+
+    .box4 {
+        position: relative;
+    }
+
+    .child4 {
+        position: absolute;
+        width: 200px;
+        height: 30px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+  </style>
+  <body>
+    <div class="box">
+      <div class="child">子元素</div>
+    </div>
+
+    <!-- <div class="box1">
+      <div class="child1">子元素1</div>
+    </div> -->
+
+    <div class="box2">
+      <div class="child2">子元素2</div>
+    </div>
+
+    <div class="box3">
+        <div class="child3">子元素3</div>
+    </div>
+
+    <div class="box4">
+        <div class="child4">子元素4</div>
+    </div>
+
+  </body>
+</html>

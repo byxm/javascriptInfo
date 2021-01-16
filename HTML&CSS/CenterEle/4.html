@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>水平垂直居中显示</title>
+  </head>
+  <style>
+    .box1 {
+      position: relative;
+      height: 500px;
+    }
+
+    .child1 {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: 50%;
+      top: 50%;
+      margin: -50px 0 0 -50px;
+      background-color: red;
+    }
+
+    .box2 {
+      position: relative;
+      height: 100px;
+    }
+
+    .child2 {
+      width: 50px;
+      height: 50px;
+      background-color: yellow;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    .box3 {
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .child3 {
+      width: 100px;
+      height: 50px;
+      background-color: red;
+    }
+  </style>
+
+  <body>
+    <div class="box1">
+      <div class="child1"></div>
+    </div>
+
+    <div class="box2">
+      <div class="child2"></div>
+    </div>
+
+    <div class="box3">
+      <div class="child3"></div>
+    </div>
+  </body>
+</html>
