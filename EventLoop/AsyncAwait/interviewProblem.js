@@ -15,6 +15,18 @@ setTimeout(function() {
     console.log('setTimeout');
 }, 0)
 async1();
+
+// const p = new Promise(function(resolve) {
+//     console.log('promise1');
+//     resolve();
+// }) 
+
+// setTimeout(function() {
+//     p.then(() => {
+//         console.log('promise2');
+//     })
+// })
+
 new Promise(function(resolve) {
     console.log('promise1');
     resolve();
@@ -22,6 +34,26 @@ new Promise(function(resolve) {
     console.log('promise2');
 });
 console.log('script end');
+
+
+/**
+ *  script start 
+ *  async1 start 
+ *  async2
+ *  promise1 
+ *  script end 
+ *  async1 end 
+ *  promise 2 
+ *  setTimeout 
+*/
+
+
+
+
+
+
+
+
 
 
 

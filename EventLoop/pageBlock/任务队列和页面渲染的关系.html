@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>任务队列和页面渲染的关系</title>
+  </head>
+  <body>
+    <strong>
+      在知乎上看到这篇文章，现在想好好理解下，宏微任务对浏览器渲染的影响
+    </strong>
+    <div id="box1"></div>
+    <div id="box2"></div>
+
+    <script>
+      let i = 10;
+      let req = () => {
+        i--;
+        requestAnimationFrame(() => {
+          document.body.style.background = "red";
+          requestAnimationFrame(() => {
+            document.body.style.background = "blue";
+            if (i > 0) {
+              req();
+            }
+          });
+        });
+      };
+
+      //   req();
+
+      setTimeout(() => {
+        console.log("sto");
+        requestAnimationFrame(() => console.log("rAF"));
+      });
+      setTimeout(() => {
+        console.log("sto");
+        requestAnimationFrame(() => console.log("rAF"));
+      });
+
+      queueMicrotask(() => console.log("mic"));
+      queueMicrotask(() => console.log("mic"));
+
+      // 每个宏任务执行完就会去渲染一次页面
+      // setTimeout(() => {
+      //   box1.innerText = 'box1'
+      // }, 1000);
+
+      // setTimeout(() => {
+      //    box2.innerText = 'box2'
+      // }, 2000)
+
+      //   new Promise((resolve, reject) => {
+      //     resolve("hahahahah");
+      //   })
+      //     .then((text) => {
+      //       box1.style.width = '200px'
+      //       debugger
+      //       box1.style.height = '100px'
+      //       box1.style.background = 'red'
+      //       return "lalalala";
+      //     })
+      //     .then((text) => {
+      //       box2.innerText = text;
+      //     });
+    </script>
+  </body>
+</html>

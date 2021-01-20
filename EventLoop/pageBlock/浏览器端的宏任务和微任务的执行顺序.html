@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>浏览器端的宏任务和微任务执行优先级</title>
+  </head>
+  <body>
+    <script>
+      setTimeout(() => {
+        console.log("timer1");
+        Promise.resolve().then(() => {
+          console.log("rs1");
+          setTimeout(() => {
+            console.log("timer2");
+          });
+        });
+      });
+      Promise.resolve().then(() => {
+        console.log("p1");
+      });
+      setTimeout(() => {
+        console.log("timer3");
+        Promise.resolve().then(() => {
+          console.log("rs2");
+          setTimeout(() => {
+            console.log("timer4");
+          });
+        });
+      });
+      Promise.resolve().then(() => {
+        console.log("p2");
+      });
+      /**
+       * p1, p2, timer1, rs1, timer3,  rs2, timer2, timer4
+       */
+      // 原因是因为浏览器端的事件轮询是每次运行一个宏任务前都要先检查微任务队列里面是否有任务，如果有就要先执行它才行
+    </script>
+  </body>
+</html>

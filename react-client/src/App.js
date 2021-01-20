@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
-
   useEffect(() => {
     /********* jsonp跨域 **********/
     // jsonp({
@@ -13,40 +12,17 @@ function App() {
     // }).then((res) => {
     //   console.log('res', res);
     // })
+  }, []);
 
-    
-
-
-
-  }, [])
-
-  function jsonp({ url, params, callback }) {
-    return new Promise((resolve, reject) => {
-      let script = document.createElement('script')
-      window[callback] = function(data) {
-        console.log('sata', data)
-        resolve(data)
-        document.body.removeChild(script)
-      }
-      params = { ...params, callback } // wd=b&callback=show
-      let arrs = []
-      for (let key in params) {
-        arrs.push(`${key}=${params[key]}`)
-      }
-      script.src = `${url}?${arrs.join('&')}`
-      document.body.appendChild(script)
-    })
-  }
-
-  function clickBtn() {
-    window.show()
+  function stopRender() {
+    for (let i = 0; i < 1e10; i++) {}
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={clickBtn}>按钮</button>
-        <img src={logo} className="App-logo" alt="logo" />
+        <button className="" onClick={stopRender}>按钮</button>
+        <button className="">第二个按钮</button>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

@@ -43,10 +43,11 @@ const readFileThunk = simpleThunk(fs.readFile);
 const readFile = thunkify(fs.readFile);
 
 function* gen() {
+  console.log('enter gen')
   const rtData = yield readFile("./generator.js");
-  console.log("str1", rtData.toString());
+  console.log("str1 end");
   const r2Data = yield readFile("../redux/demo.js");
-  console.log("str2", r2Data.toString());
+  console.log("str2 end");
 }
 
 // const g = gen()
@@ -74,6 +75,11 @@ function run(fn) {
 
 // run(gen)
 
+// console.log('leave run')
+
+
+/***********************************************/
+
 /**
  *
  * promise的自执行，也是利用上面的generator自执行的原理。
@@ -90,6 +96,7 @@ function sleepValue(time, value) {
 }
 
 function* proGen() {
+  console.log('11111111111111')
   const rt1 = yield sleepValue(2, "this is rt1");
   console.log("rt1", rt1);
   const rt2 = yield sleepValue(4, "this is rt2");
@@ -117,3 +124,37 @@ function runPromise(fn) {
 }
 
 runPromise(proGen)
+
+console.log('sdffsdfsfsfsfdsfsdff')
+
+/****************************************/
+
+
+ async function pro() {
+  console.log(111111)
+ const res =  await  1 + 1
+ console.log('sdfsfsf', res);
+ const tr = await 2 + 2
+ console.log('trtttrtt', tr);
+}
+
+// const res = pro();
+// console.log('res', res);
+
+// console.log('this is end')
+
+/*********************************/
+
+function* func() {
+  console.log('enterfunc');
+  yield 31
+  console.log('31 yield');
+}
+
+const f = func();
+// f.next()
+// f.next()
+
+// console.log('sdfsfsdfs');
+
+/**************/
