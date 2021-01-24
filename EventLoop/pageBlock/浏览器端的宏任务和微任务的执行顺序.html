@@ -6,35 +6,37 @@
     <title>浏览器端的宏任务和微任务执行优先级</title>
   </head>
   <body>
+    <div id="con">this is con</div>
     <script>
-      setTimeout(() => {
-        console.log("timer1");
-        Promise.resolve().then(() => {
-          console.log("rs1");
-          setTimeout(() => {
-            console.log("timer2");
+      // 以下操作属于同一次宏任务, GUI在渲染的时候，会将同一次的宏任务执行操作合并
+      // {
+      //   document.body.style = "background: red;";
+      //   document.body.style = "background: yellow;";
+      //   document.body.style = "background: blue;";
+      //   document.body.style = "background: pink;";
+      // }
+
+      // 以下属于两个宏任务所以能看到变化
+      // {
+
+      //   document.body.style = "background: red;";
+      //   setTimeout(() => {
+      //     document.body.style = "background: yellow;"
+      //   }, 0)
+      // }
+
+      // 宏任务执行完会马上执行现有的所有微任务，微任务这个操作是发生在渲染前，所以也能看到变化
+
+      {
+        document.body.style = "background: red;";
+        console.log(1);
+        setTimeout(() => {
+          console.log(2);
+          Promise.resolve("finished").then(() => {
+            document.body.style = "background: green;";
           });
-        });
-      });
-      Promise.resolve().then(() => {
-        console.log("p1");
-      });
-      setTimeout(() => {
-        console.log("timer3");
-        Promise.resolve().then(() => {
-          console.log("rs2");
-          setTimeout(() => {
-            console.log("timer4");
-          });
-        });
-      });
-      Promise.resolve().then(() => {
-        console.log("p2");
-      });
-      /**
-       * p1, p2, timer1, rs1, timer3,  rs2, timer2, timer4
-       */
-      // 原因是因为浏览器端的事件轮询是每次运行一个宏任务前都要先检查微任务队列里面是否有任务，如果有就要先执行它才行
+        }, 0);
+      }
     </script>
   </body>
 </html>

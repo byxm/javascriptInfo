@@ -43,7 +43,7 @@ const readFileThunk = simpleThunk(fs.readFile);
 const readFile = thunkify(fs.readFile);
 
 function* gen() {
-  console.log('enter gen')
+  console.log("enter gen");
   const rtData = yield readFile("./generator.js");
   console.log("str1 end");
   const r2Data = yield readFile("../redux/demo.js");
@@ -77,7 +77,6 @@ function run(fn) {
 
 // console.log('leave run')
 
-
 /***********************************************/
 
 /**
@@ -96,7 +95,7 @@ function sleepValue(time, value) {
 }
 
 function* proGen() {
-  console.log('11111111111111')
+  console.log("11111111111111");
   const rt1 = yield sleepValue(2, "this is rt1");
   console.log("rt1", rt1);
   const rt2 = yield sleepValue(4, "this is rt2");
@@ -104,7 +103,6 @@ function* proGen() {
   const rt3 = yield sleepValue(2, "this is rt3");
   console.log("rt3", rt3);
 }
-
 
 function runPromise(fn) {
   const ge = fn();
@@ -119,23 +117,21 @@ function runPromise(fn) {
     });
   }
 
-  runRecursion(ge)
-
+  runRecursion(ge);
 }
 
-runPromise(proGen)
+// runPromise(proGen)
 
-console.log('sdffsdfsfsfsfdsfsdff')
+// console.log('sdffsdfsfsfsfdsfsdff')
 
 /****************************************/
 
-
- async function pro() {
-  console.log(111111)
- const res =  await  1 + 1
- console.log('sdfsfsf', res);
- const tr = await 2 + 2
- console.log('trtttrtt', tr);
+async function pro() {
+  console.log(111111);
+  const res = (await 1) + 1;
+  console.log("sdfsfsf", res);
+  const tr = (await 2) + 2;
+  console.log("trtttrtt", tr);
 }
 
 // const res = pro();
@@ -146,15 +142,49 @@ console.log('sdffsdfsfsfsfdsfsdff')
 /*********************************/
 
 function* func() {
-  console.log('enterfunc');
-  yield 31
-  console.log('31 yield');
+  console.log("enterfunc");
+  yield 31;
+  console.log("31 yield");
 }
 
-const f = func();
-// f.next()
+// const f = func();
+// f.next();
 // f.next()
 
-// console.log('sdfsfsdfs');
 
+function autoRunFunc(fn) {
+  const f = fn();
+
+  function next() {
+    const { value, done } = f.next();
+    if (done) {
+      return f.return();
+    }
+    next();
+  }
+  next();
+}
+
+// autoRunFunc(func)
+
+// console.log("sdfsfsdfs");
 /**************/
+
+
+function add() {
+  return 5
+}
+
+async function genAdd() {
+  console.log('enter add')
+  await add();
+  console.log('middle add');
+  await add();
+  console.log('end add');
+  await add();
+}
+
+genAdd();
+console.log('hahahahah');
+
+
