@@ -15,6 +15,28 @@ class HomeController extends Controller {
     console.log(callback); // show
     ctx.body =`${callback}('我不爱你')`;
   }
+
+  async ajax() {
+    const params = this.ctx.request.query
+    this.ctx.body = { name: params.name }; 
+  }
+
+  async sleep(seconds) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve()
+      }, seconds * 1000)
+    })
+  }
+
+  async promise() {
+    console.log('time', Date.now());
+    const params = this.ctx.request.query
+    // console.log('hahahahah')
+    await this.sleep(10)
+    this.ctx.body = { name: params.name }; 
+  }
+
 }
 
 module.exports = HomeController;

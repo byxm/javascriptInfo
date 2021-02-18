@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script src="./createDOM.js"></script>
+    <script>
+      const div = document.createElement('div')
+      const crtDOM = new Element("div", { class: "box" }, ['inner', div], "box1");
+      const ret = crtDOM.render();
+      console.log("crtDOM", ret);
+    </script>
+  </body>
+</html>

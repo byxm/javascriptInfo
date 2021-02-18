@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+
+    <button id="aBtn">a</button>
+    <button id="bBtn">b</button>
+    <button id="start">开始执行</button>
+
+    <script type="module">
+      import ajax from "./ajax.js";
+      // import EventFlow from "./flow.js";
+
+      /****************
+       * 页面上有一个输入框，两个按钮，A按钮和B按钮，点击A或者B分别会发送一个异步请求，请求完成后，结果会显示在输入框中
+       * ************************/
+
+      // 解法一：使用事件流程控制
+      // const event = new EventFlow();
+
+      // aBtn.onclick = function () {
+      //   const aRequest = (next) => {
+      //     ajax({
+      //       url: "/api/ajax",
+      //       method: "get",
+      //       data: { name: "Simone", age: 22 },
+      //     }).then((res) => {
+      //       input.value = res.name;
+      //       next();
+      //     });
+      //   };
+      //   event.fetchTask(aRequest);
+      // };
+
+      // bBtn.onclick = function () {
+      //   const bRequest = (next) => {
+      //     ajax({
+      //       url: "/api/promise",
+      //       method: "get",
+      //       data: { name: "Panyu", age: 22 },
+      //     }).then((res) => {
+      //       input.value = res.name;
+      //       next();
+      //     });
+      //   };
+      //   event.fetchTask(bRequest);
+      // };
+
+      // start.onclick = function () {
+      //   event.startExcute();
+      // };
+
+      // 解法二：使用Promise的then链调用
+
+      // let P = Promise.resolve();
+
+      // aBtn.onclick = () => {
+      //   P = P.then(() => {
+      //     return new Promise((resolve, reject) => {
+      //       ajax({
+      //         url: "/api/ajax",
+      //         method: "get",
+      //         data: { name: "Simone", age: 22 },
+      //       }).then((res) => {
+      //         resolve();
+      //         input.value = res.name;
+      //       });
+      //     });
+      //   });
+      // };
+
+      // bBtn.onclick = () => {
+      //   P = P.then(() => {
+      //     return new Promise((resolve, reject) => {
+      //       ajax({
+      //         url: "/api/promise",
+      //         method: "get",
+      //         data: { name: "Panyu", age: 22 },
+      //       }).then((res) => {
+      //         resolve();
+      //         input.value = res.name;
+      //       });
+      //     });
+      //   });
+      // };
+
+      /****************
+       *
+       * ************************/
+
+      /*************************
+       * 实现 mergePromise 函数，把传进去的函数数组按顺序先后执行，并且把返回的数据先后放到数组 data 中
+       * **********************************/
+
+      // const timeout = (ms) =>
+      //   new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       resolve();
+      //     }, ms);
+      //   });
+
+      // const ajax1 = () =>
+      //   timeout(2000).then(() => {
+      //     console.log("1");
+      //     return 1;
+      //   });
+
+      // const ajax2 = () =>
+      //   timeout(1000).then(() => {
+      //     console.log("2");
+      //     return 2;
+      //   });
+
+      // const ajax3 = () =>
+      //   timeout(2000).then(() => {
+      //     console.log("3");
+      //     return 3;
+      //   });
+
+      // const mergePromise = (ajaxArray) => {
+      //   // 在这里实现你的代码
+      //   return new Promise((resolve, reject) => {
+      //     const resultArr = [];
+      //     const startReqeust = () => {
+      //       if (!ajaxArray.length) {
+      //         resolve(resultArr);
+      //         return;
+      //       }
+      //       const task = ajaxArray.shift();
+      //       task().then((rt) => {
+      //         console.log()
+      //         resultArr.push(rt);
+      //         startReqeust();
+      //       });
+      //     };
+      //     startReqeust();
+      //   });
+      // };
+
+      // mergePromise([ajax1, ajax2, ajax3]).then((data) => {
+      //   console.log("done");
+      //   console.log(data); // data 为 [1, 2, 3]
+      // });
+
+      // // 要求分别输出
+      // // 1
+      // // 2
+      // // 3
+      // // done
+      // // [1, 2, 3]
+
+      /*************************
+       *
+       * **********************************/
+
+      /*************************
+       * 控制异步请求并发数
+       * **********************************/
+
+      let request = [];
+      for (let i = 0; i < 100; i++) {
+        request.push("/api/promise");
+      }
+
+      let count = 0;
+      function curAsync() {
+        return new Promise((resolve, reject) => {
+          const callback = (data) => {
+            console.log("responseData", data, Date.now());
+            count--;
+            for(let i = 0; i < 1e9; i++) {}
+            startRequest();
+          };
+          const startRequest = () => {
+            count++;
+            if (request.length > 0 && count <= 6) {
+              const firstRequest = request.shift();
+              ajax(
+                {
+                  url: firstRequest,
+                  method: "get",
+                  data: { name: "Simone", age: 22 },
+                },
+                callback
+              );
+            }
+          };
+          startRequest();
+        });
+      }
+
+      // for (let i = 0; i < 6; i++) {
+      //   curAsync();
+      // }
+
+
+      /*************************
+       *
+       * **********************************/
+    </script>
+  </body>
+</html>

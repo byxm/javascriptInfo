@@ -4,19 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>页面高性能渲染大量数据</title>
-    <style></style>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+      }
+    </style>
   </head>
   <body>
     <ul id="container"></ul>
-
+    <div id="box1"></div>
+    <div id="box2"></div>
     <script>
-      //   const con = document.getElementById("container");
-      //   con.style.transform = "translateX(1000px)";
-      //   con.style.transition = "transform 1s ease-in-out";
-      //   requestAnimationFrame(() => {
-      //     con.style.transform = "translateX(500px)";
-      //   });
-
+      const con = document.getElementById("box1");
+      con.style.transform = "translateX(1000px)";
+      con.style.transition = "transform 1s ease-in-out";
+      requestAnimationFrame(() => {
+        con.style.transform = "translateX(500px)";
+      });
       // 一次性渲染大量数据
       //   {
       //     // 记录任务开始时间

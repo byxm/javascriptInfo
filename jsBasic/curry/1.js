@@ -10,7 +10,6 @@ const curry = function(fn) {
     }
 }
 
-
 const add = (x, y) => {
     return x + y
 }
@@ -21,3 +20,20 @@ console.log('sum', addCurrey(2))
 
 
 
+
+// const curry = (fn) => {
+//   const res = (...args) => {
+//     if (args.length === fn.length) {
+//       return fn.apply(this, args);
+//     } else {
+//       return (...restArgs) => res(...args, ...restArgs);
+//     }
+//   };
+//   return res;
+// };
+
+// const foo = curry((a, b, c, d) => {
+//   console.log(a, b, c, d);
+// });
+
+// foo(1)(2)(3)(4)(5);

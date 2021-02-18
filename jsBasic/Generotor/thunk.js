@@ -120,9 +120,9 @@ function runPromise(fn) {
   runRecursion(ge);
 }
 
-// runPromise(proGen)
+runPromise(proGen)
 
-// console.log('sdffsdfsfsfsfdsfsdff')
+console.log('sdffsdfsfsfsfdsfsdff')
 
 /****************************************/
 
@@ -171,20 +171,20 @@ function autoRunFunc(fn) {
 /**************/
 
 
-function add() {
-  return 5
-}
+// function add() {
+//   return 5
+// }
 
-async function genAdd() {
-  console.log('enter add')
-  await add();
-  console.log('middle add');
-  await add();
-  console.log('end add');
-  await add();
-}
+// async function genAdd() {
+//   console.log('enter add')
+//   await add();
+//   console.log('middle add');
+//   await add();
+//   console.log('end add');
+//   await add();
+// }
 
-genAdd();
-console.log('hahahahah');
+// genAdd();
+// console.log('hahahahah');
 
 

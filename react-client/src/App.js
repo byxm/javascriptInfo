@@ -41,7 +41,7 @@ function App() {
     sum++
     setSum(sum) 
   }
-  blockRender();
+  // blockRender();
 
   return (
     <div className="App">
