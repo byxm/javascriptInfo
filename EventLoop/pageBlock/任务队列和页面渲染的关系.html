@@ -27,42 +27,51 @@
         });
       };
 
-      //   req();
+      // req();
 
-      setTimeout(() => {
-        console.log("sto");
-        requestAnimationFrame(() => console.log("rAF"));
-      });
-      setTimeout(() => {
-        console.log("sto");
-        requestAnimationFrame(() => console.log("rAF"));
-      });
+      // setTimeout(() => {
+      //   console.log("sto");
+      //   requestAnimationFrame(() => console.log("rAF"));
+      // });
+      // setTimeout(() => {
+      //   console.log("sto");
+      //   requestAnimationFrame(() => console.log("rAF"));
+      // });
 
-      queueMicrotask(() => console.log("mic"));
-      queueMicrotask(() => console.log("mic"));
+      // queueMicrotask(() => console.log("mic"));
+      // queueMicrotask(() => console.log("mic"));
 
       // 每个宏任务执行完就会去渲染一次页面
-      // setTimeout(() => {
-      //   box1.innerText = 'box1'
-      // }, 1000);
+      setTimeout(() => {
+        box1.innerText = "box1";
+      }, 1000);
 
-      // setTimeout(() => {
-      //    box2.innerText = 'box2'
-      // }, 2000)
+      setTimeout(() => {
+        box2.innerText = "box2";
+      }, 2000);
 
-      //   new Promise((resolve, reject) => {
-      //     resolve("hahahahah");
-      //   })
-      //     .then((text) => {
-      //       box1.style.width = '200px'
-      //       debugger
-      //       box1.style.height = '100px'
-      //       box1.style.background = 'red'
-      //       return "lalalala";
-      //     })
-      //     .then((text) => {
-      //       box2.innerText = text;
-      //     });
+      new Promise((resolve, reject) => {
+        resolve("hahahahah");
+      })
+        .then((text) => {
+          box1.style.width = "200px";
+          box1.style.height = "100px";
+          box1.style.background = "red";
+          return "lalalala";
+        })
+        .then((text) => {
+          box2.innerText = text;
+          setTimeout(() => {
+           Promise.resolve().then((res) => {
+              box1.style.width = "1000px";
+              box1.style.height = "1000px";
+              box1.style.background = "green";
+            });
+          });
+        });
+      box1.style.width = "500px";
+      box1.style.height = "500px";
+      box1.style.background = "blue";
     </script>
   </body>
 </html>

@@ -1,4 +1,6 @@
 import React, { useReducer } from "react";
+import { count1, es1Count } from './esModule1'
+import { count2, es2Count } from './esModule2'
 
 function myReducer(state, action) {
   switch (action.type) {
@@ -21,6 +23,12 @@ function myReducer(state, action) {
 
 function ReducerDemo() {
   const [state, dispatch] = useReducer(myReducer, { count: 0 });
+  // es1Count(10)
+  // console.log('outEs1', count1);
+  // es2Count(10)
+  // console.log('outEs2', count2);
+
+  
 
   return (
     <div>
@@ -36,4 +44,4 @@ function ReducerDemo() {
   );
 }
 
-export default ReducerDemo
+export default ReducerDemo;

@@ -27,5 +27,9 @@
     "request": "^2.88.2",
     "superagent": "^6.1.0",
     "thunkify": "^2.1.2"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "eslint": "^7.21.0"
   }
 }

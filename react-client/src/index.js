@@ -13,9 +13,9 @@ ReactDOM.render(
   <Router>
     {/* <React.StrictMode> */}
     <Switch>
-      <Route path="/project">
+      {/* <Route path="/project">
         <Project />
-      </Route>
+      </Route> */}
       <Route path="/useEffect">
         <UseEffect />
       </Route>
