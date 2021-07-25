@@ -31,8 +31,8 @@
       textthis is test textthis is test textthis is test textthis is test
       textthis is test text</span
     >
-    <div id='divContainer'></div>
-    <button id="whileTrue">while true</button>
+    <!-- <div id='divContainer'></div> -->
+    <!-- <button id="whileTrue">while true</button> -->
     <button id="testTimeOut">setTimeout</button>
     <div id="divContainer2"></div>
     <script>
@@ -50,9 +50,9 @@
       function testTimeout() {
         setTimeout(testTimeOut);
       }
-      whileTrue.onclick = () => {
-        testInfiniteLoop();
-      };
+      // whileTrue.onclick = () => {
+      //   testInfiniteLoop();
+      // };
       testTimeOut.onclick = () => {
         testTimeOut();
       };
@@ -67,6 +67,7 @@
       }
       function animateReq() {
         divContainer2.style.marginLeft = `${++marginGap2}px`; 
+        for(let i = 0; i < 1e8; i++) {}
         requestAnimationFrame(animateReq);
       }
 
@@ -77,7 +78,7 @@
        * 16.7ms。也就是说1s内如果有60次刷新任务的话，每一帧就执行一次任务。但是现在animateTimeout每秒有1000次刷新任务，同步到每一帧大概会多执行3次
        * 所以animateTimeout的播放速度就会看起来快3倍。所以当把setTimeout的时间设置成1000 / 60和刷新频率一致看起来就一样了。
       */
-      animateTimeout();
+      // animateTimeout();
       /**
        * setTimeout发生在事件环，而requestAnimatinoFrame发生在渲染环
       */

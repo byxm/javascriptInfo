@@ -8,32 +8,50 @@ import UseContext from "./demo/useContext";
 import UserReducer from "./demo/useReducer";
 import UseEffect from './demo/useEffect'
 import Project from './demo/project'
+import ReactDnd from './demo/react-dnd'
+import { observe } from './demo/react-dnd/game'
 
-ReactDOM.render(
-  <Router>
-    {/* <React.StrictMode> */}
-    <Switch>
-      {/* <Route path="/project">
-        <Project />
-      </Route> */}
-      <Route path="/useEffect">
-        <UseEffect />
-      </Route>
-      <Route path="/reducer">
-        <UserReducer />
-      </Route>
-      <Route path="/context">
-        <UseContext />
-      </Route>
-      <Route path="/">
-        <App />
-      </Route>
-    </Switch>
+// ReactDOM.render(
+//   <Router>
+//     {/* <React.StrictMode> */}
+//     <Switch>
+//       {/* <Route path="/project">
+//         <Project />
+//       </Route> */}
+//       <Route path="/reactDnd">
+//         <ReactDnd knightPosition={[1,7]} />
+//       </Route>
+//       <Route path="/useEffect">
+//         <UseEffect />
+//       </Route>
+//       <Route path="/reducer">
+//         <UserReducer />
+//       </Route>
+//       <Route path="/context">
+//         <UseContext />
+//       </Route>
+//       <Route path="/">
+//         <App />
+//       </Route>
+//     </Switch>
 
-    {/* </React.StrictMode> */}
-  </Router>,
-  document.getElementById("root")
+//     {/* </React.StrictMode> */}
+//   </Router>,
+//   document.getElementById("root")
+// );
+
+
+observe((knightPosition) =>
+  ReactDOM.render(
+    <ReactDnd knightPosition={knightPosition} />,
+    document.getElementById("root")
+  )
 );
+
+// ReactDOM.render(
+//   <ReactDnd knightPosition={[1,7]} />,
+//   document.getElementById("root")
+// )
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

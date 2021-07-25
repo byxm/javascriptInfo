@@ -1,4 +1,4 @@
-import React, { useState, useMemo, memo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, memo, useCallback, useEffect, useRef, createRef } from "react";
 // import React, { useEffect } from "react";
 
 // function TestDemo() {
@@ -210,4 +210,93 @@ import React, { useState, useMemo, memo, useCallback, useEffect } from "react";
 
 /*********************************************/
 
-// export default TestDemo;
+// function TestDemo() {
+//   const blockRender = () => {
+//     for (let i = 0; i < 1e9; i++) {}
+//   };
+
+//   const bigData = async (max = 100) => {
+//     // await blockRender();
+//     // console.log("block1");
+//     // await blockRender();
+//     // console.log("block1");
+//     // await blockRender();
+//     // console.log("block1");
+//     // await blockRender();
+
+//     const startTest = async (number) => {
+//       if (number === 0) {
+//         return "done";
+//       }
+//       await blockRender();
+//       number--;
+//       //   setTimeout(async () => {
+//       console.log("number", number);
+//       //   })
+//       await startTest(number);
+//     };
+
+//     // setTimeout(async () => {
+//     await startTest(max);
+//     // });
+
+//     // return await startTest(max);
+//   };
+
+//   //   bigData();
+
+//   const clickBigData = async () => {
+//     const res = await bigData();
+//     console.log("res", res);
+//   };
+
+//   console.log("the end");
+
+//   return (
+//     <>
+//       div content
+//       <button onClick={clickBigData}>来点我</button>
+//     </>
+//   );
+// }
+
+
+/*************************************************************/
+function TestDemo() {
+  let [number, setNumber] = useState(0);
+  const [initValue, setInitValue] = useState('lalalalalaal');
+  useEffect(() => {
+      setInitValue('xixixixxixix')
+  }, [])
+  return (
+      <>
+          <Child initValue={initValue}  />
+          <button onClick={() => setNumber({ number: number + 1 })}>+</button>
+      </>
+  )
+}
+
+
+let input;
+function Child(props) {
+    const inputRef = useRef();
+    const [initValue, setInitValue] = useState(props.initValue) 
+    console.log('initValue-------------', initValue, props.initValue)
+
+    console.log('input===inputRef', input === inputRef);
+    input = inputRef;
+    function getFocus() {
+        inputRef.current.focus();
+    }
+    return (
+        <>
+            <input type="text" ref={inputRef} />
+            <button onClick={getFocus}>获得焦点</button>
+        </>
+    )
+}
+
+
+
+
+export default TestDemo;

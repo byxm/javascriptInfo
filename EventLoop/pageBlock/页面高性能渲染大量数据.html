@@ -22,6 +22,7 @@
     <ul id="container"></ul>
     <div id="box1"></div>
     <div id="box2"></div>
+    <input type="text" id="input" />
     <script>
       const con = document.getElementById("box1");
       con.style.transform = "translateX(1000px)";
@@ -29,6 +30,28 @@
       requestAnimationFrame(() => {
         con.style.transform = "translateX(500px)";
       });
+
+      const throttle = (fn, delay) => {
+        let nowDate = Date.now();
+        return function () {
+          let now = Date.now();
+          if (now - nowDate > delay) {
+            fn.call(this);
+            nowDate = now;
+          }
+        };
+      };
+
+      const debunce = (fn, time) => {
+        let timer = null;
+        return function () {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn();
+          }, time);
+        };
+      };
+
       // 一次性渲染大量数据
       //   {
       //     // 记录任务开始时间

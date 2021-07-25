@@ -43,9 +43,26 @@ function App() {
   }
   // blockRender();
 
+  const testInput = function() {
+    console.log('hahahahah', this);
+  }
+
+  const throttle = function(fn, delay){
+    let nowDate = Date.now()
+    return function() {
+      let now = Date.now()
+      if(now - nowDate > delay) {
+        console.log('this', this)
+        fn.call(this)
+        nowDate = now;
+      }
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
+        <input onInput={throttle(testInput, 1000)} />
         <button className="" onClick={blockRender}>
           阻塞渲染按钮
         </button>
