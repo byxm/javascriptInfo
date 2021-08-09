@@ -1,4 +1,12 @@
-import React, { useState, useMemo, memo, useCallback, useEffect, useRef, createRef } from "react";
+import React, {
+  useState,
+  useMemo,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  createRef,
+} from "react";
 // import React, { useEffect } from "react";
 
 // function TestDemo() {
@@ -260,43 +268,38 @@ import React, { useState, useMemo, memo, useCallback, useEffect, useRef, createR
 //   );
 // }
 
-
 /*************************************************************/
 function TestDemo() {
   let [number, setNumber] = useState(0);
-  const [initValue, setInitValue] = useState('lalalalalaal');
+  const [initValue, setInitValue] = useState("lalalalalaal");
   useEffect(() => {
-      setInitValue('xixixixxixix')
-  }, [])
+    setInitValue("xixixixxixix");
+  }, []);
   return (
-      <>
-          <Child initValue={initValue}  />
-          <button onClick={() => setNumber({ number: number + 1 })}>+</button>
-      </>
-  )
+    <>
+      <Child initValue={initValue} />
+      <button onClick={() => setNumber({ number: number + 1 })}>+</button>
+    </>
+  );
 }
-
 
 let input;
 function Child(props) {
-    const inputRef = useRef();
-    const [initValue, setInitValue] = useState(props.initValue) 
-    console.log('initValue-------------', initValue, props.initValue)
+  const inputRef = useRef();
+  const [initValue, setInitValue] = useState(props.initValue);
+  console.log("initValue-------------", initValue, props.initValue);
 
-    console.log('input===inputRef', input === inputRef);
-    input = inputRef;
-    function getFocus() {
-        inputRef.current.focus();
-    }
-    return (
-        <>
-            <input type="text" ref={inputRef} />
-            <button onClick={getFocus}>获得焦点</button>
-        </>
-    )
+  console.log("input===inputRef", input === inputRef);
+  input = inputRef;
+  function getFocus() {
+    inputRef.current.focus();
+  }
+  return (
+    <>
+      <input type="text" ref={inputRef} />
+      <button onClick={getFocus}>获得焦点</button>
+    </>
+  );
 }
-
-
-
 
 export default TestDemo;
