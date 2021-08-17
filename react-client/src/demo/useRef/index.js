@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react";
+import MockConstructor from './mockConstructor'
 
 const TestUseRef = () => {
   const [timeVal, setTimeVal] = useState(0);
@@ -28,6 +29,7 @@ const TestUseRef = () => {
       <div onClick={pauseTimer}>停止计数</div>
       <p>time: {timeVal}</p>
       <p onClick={() => setTimeVal(timeVal + 1)}>click me</p>
+      <MockConstructor />
     </>
   );
 };

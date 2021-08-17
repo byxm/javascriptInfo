@@ -3,44 +3,52 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
+import store from "./redux/store";
 import UseContext from "./demo/useContext";
 import UseRef from "./demo/useRef";
 import UserReducer from "./demo/useReducer";
 import UseEffect from "./demo/useEffect";
+import RenderProps from "./demo/renderProps";
 import Project from "./demo/project";
 import ReactDnd from "./demo/react-dnd";
 import { observe } from "./demo/react-dnd/game";
 
 ReactDOM.render(
-  <Router>
-    {/* <React.StrictMode> */}
-    <Switch>
-      {/* <Route path="/project">
+  <Provider store={store}>
+    <Router>
+      {/* <React.StrictMode> */}
+      <Switch>
+        {/* <Route path="/project">
         <Project />
       </Route> */}
-      {/* <Route path="/reactDnd">
+        {/* <Route path="/reactDnd">
         <ReactDnd knightPosition={[1, 7]} />
       </Route> */}
-      <Route path="/useEffect">
-        <UseEffect />
-      </Route>
-      <Route path="/reducer">
-        <UserReducer />
-      </Route>
-      <Route path="/context">
-        <UseContext />
-      </Route>
-      <Route path="/ref">
-        <UseRef />
-      </Route>
-      <Route path="/">
-        <App />
-      </Route>
-    </Switch>
+        <Route path="/useEffect">
+          <UseEffect />
+        </Route>
+        <Route path="/reducer">
+          <UserReducer />
+        </Route>
+        <Route path="/context">
+          <UseContext />
+        </Route>
+        <Route path="/ref">
+          <UseRef />
+        </Route>
+        <Route path="/renderProps">
+          <RenderProps />
+        </Route>
+        <Route path="/">
+          <App />
+        </Route>
+      </Switch>
 
-    {/* </React.StrictMode> */}
-  </Router>,
+      {/* </React.StrictMode> */}
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 
