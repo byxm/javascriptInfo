@@ -1,19 +1,12 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunkMiddleWare from 'redux-thunk'
+import * as allReducer from './reducer';
 
-const initialState = { value: 0 };
 
-const counterReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "createNumber":
-      return { ...state, value: state.value + 1 };
-    default:
-      return state;
-  }
-};
 
 const composedEnhanced = applyMiddleware(thunkMiddleWare);
+const appReducer = combineReducers(allReducer)
 
-const store = createStore(counterReducer, composedEnhanced);
+const store = createStore(appReducer, composedEnhanced);
 
 export default store;

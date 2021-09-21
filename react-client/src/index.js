@@ -11,9 +11,14 @@ import UseRef from "./demo/useRef";
 import UserReducer from "./demo/useReducer";
 import UseEffect from "./demo/useEffect";
 import RenderProps from "./demo/renderProps";
+import CustomeHook from "./demo/customHook";
+import ManageModal from './demo/manageModal'
 import Project from "./demo/project";
 import ReactDnd from "./demo/react-dnd";
 import { observe } from "./demo/react-dnd/game";
+
+
+import 'antd/dist/antd.css'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -40,6 +45,12 @@ ReactDOM.render(
         </Route>
         <Route path="/renderProps">
           <RenderProps />
+        </Route>
+        <Route path="/customHook">
+          <CustomeHook />
+        </Route>
+        <Route path="/manageModal">
+          <ManageModal />
         </Route>
         <Route path="/">
           <App />

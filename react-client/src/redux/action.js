@@ -5,3 +5,20 @@ export const fetchData = () => {
     });
   };
 };
+
+export function showModal(modalId, args) {
+  return {
+    type: "nice-modal/show",
+    payload: { modalId, args },
+  };
+}
+
+
+export function hideModal(modalId, force) {
+  return {
+    type: "nice-modal/hide",
+    payload: { modalId, force },
+  };
+}
+
+
